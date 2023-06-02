@@ -6,12 +6,16 @@ import {AbstractConnector} from "./abstract-connector"
 import {Endpoint} from "../endpoint/endpoint"
 
 import {Component} from "../component/component"
-import {extend, isString, merge, uuid, Merge, isObject} from "@jsplumb/util"
 import {Overlay} from "../overlay/overlay"
 import {makeLightweightAnchorFromSpec} from "../factory/anchor-record-factory"
 
 import * as Constants from "../constants"
-import {ConnectorSpec, ConnectorWithOptions, AnchorSpec, EndpointSpec, DEFAULT, PaintStyle} from "@jsplumb/common"
+import {extend, isObject, isString, merge, Merge, uuid} from "../../util/util"
+import {AnchorSpec} from "../../common/anchor"
+import {ConnectorSpec, ConnectorWithOptions} from "../../common/connector"
+import {EndpointSpec} from "../../common/endpoint"
+import {PaintStyle} from "../../common/paint-style"
+import {DEFAULT} from "../../common/index"
 
 /**
  * @internal
@@ -320,12 +324,12 @@ export class Connection<E = any> extends Component {
 
         let _reattach = params.reattach || this.endpoints[0].reattachConnections || this.endpoints[1].reattachConnections || this.instance.defaults.reattachConnections
 
-        const initialPaintStyle = this.endpoints[0].connectorStyle || this.endpoints[1].connectorStyle || params.paintStyle || this.instance.defaults.paintStyle
+        const initialPaintStyle = extend({}, this.endpoints[0].connectorStyle || this.endpoints[1].connectorStyle || params.paintStyle || this.instance.defaults.paintStyle)
         this.appendToDefaultType({
             detachable: _detachable,
             reattach: _reattach,
             paintStyle:initialPaintStyle,
-            hoverPaintStyle:this.endpoints[0].connectorHoverStyle || this.endpoints[1].connectorHoverStyle || params.hoverPaintStyle || this.instance.defaults.hoverPaintStyle
+            hoverPaintStyle:extend({}, this.endpoints[0].connectorHoverStyle || this.endpoints[1].connectorHoverStyle || params.hoverPaintStyle || this.instance.defaults.hoverPaintStyle)
         })
         if (params.outlineWidth) {
             initialPaintStyle.outlineWidth = params.outlineWidth

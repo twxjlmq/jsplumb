@@ -881,11 +881,8 @@ export class ConnectionSelection extends SelectionBase<Connection> {
 
 // @public
 export interface ConnectionTypeDescriptor extends TypeDescriptor {
-    // (undocumented)
     detachable?: boolean;
-    // (undocumented)
     endpoints?: [EndpointSpec, EndpointSpec];
-    // (undocumented)
     reattach?: boolean;
 }
 
@@ -1312,11 +1309,8 @@ export class EndpointSelection extends SelectionBase<Endpoint> {
 
 // @public
 export interface EndpointTypeDescriptor extends TypeDescriptor {
-    // (undocumented)
     connectionsDetachable?: boolean;
-    // (undocumented)
     maxConnections?: number;
-    // (undocumented)
     reattachConnections?: boolean;
 }
 
@@ -2213,6 +2207,8 @@ export abstract class Overlay extends EventGenerator {
     // (undocumented)
     location: number | Array<number>;
     // (undocumented)
+    setLocation(l: number | string): void;
+    // (undocumented)
     setVisible(v: boolean): void;
     // (undocumented)
     shouldFireEvent(event: string, value: any, originalEvent?: Event): boolean;
@@ -2559,7 +2555,6 @@ export interface TranslatedViewportElementBase<E> extends ViewportElementBase<E>
 
 // @public
 export interface TypeDescriptor extends TypeDescriptorBase {
-    // (undocumented)
     overlays?: Array<OverlaySpec>;
 }
 

@@ -1,24 +1,22 @@
+import { BrowserJsPlumbDefaults, BrowserJsPlumbInstance } from './browser-ui-renderer';
+export * from './browser-ui-renderer';
+export * from './browser-ui-lists';
+export * from './common';
+export * from './connector-bezier';
+export * from './connector-flowchart';
+export * from './core';
+export * from './test';
+export * from './util';
 /**
- * This package is a renderer for the jsPlumb Community edition that uses a single SVG element per connection, and can
- * connect HTML/SVG elements in the DOM.  For users of version of jsPlumb prior to 5.x, this package is the equivalent to
- * what used to just be known as "jsPlumb".
- *
- * In actual fact only this renderer exists for the 5.x Community edition, but the code in 5.x is now architected in such a way
- * that alternative renderers could be implemented.
- *
- * @packageDocumentation
+ * Create a new BrowserJsPlumbInstance, optionally with the given defaults.
+ * @param defaults
+ * @public
  */
-import { BrowserJsPlumbDefaults, BrowserJsPlumbInstance } from "./browser-jsplumb-instance";
-export * from './constants';
-export * from './browser-jsplumb-instance';
-export * from './collicat';
-export { EVENT_DRAG_START, EVENT_DRAG_MOVE, EVENT_DRAG_STOP, EVENT_CONNECTION_DRAG, EVENT_CONNECTION_ABORT } from './constants';
-export { EventManager, pageLocation, touches, touchCount, getTouch, getPageLocation, setForceTouchEvents, setForceMouseEvents, isTouchDevice, isMouseDevice } from './event-manager';
-export * from "./browser-util";
-export * from './element-facade';
-export * from './element-drag-handler';
-export * from './drag-manager';
-export { svg } from './svg-util';
 export declare function newInstance(defaults?: BrowserJsPlumbDefaults): BrowserJsPlumbInstance;
+/**
+ * Execute the given function when the DOM is ready, or if the DOM is already ready, execute the given function immediately.
+ * @param f
+ * @public
+ */
 export declare function ready(f: Function): void;
 //# sourceMappingURL=index.d.ts.map

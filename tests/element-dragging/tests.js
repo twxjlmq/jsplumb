@@ -21,12 +21,12 @@ var reinit = function(defaults) {
     removeContainer()
     makeContainer()
 
-    var d = jsPlumbUtil.extend({container:container}, defaults || {});
+    var d = jsPlumb.extend({container:container}, defaults || {});
     support.cleanup()
 
-    _jsPlumb = jsPlumbBrowserUI.newInstance((d));
-    support = jsPlumbTestSupport.getInstanceQUnit(_jsPlumb);
-    defaults = jsPlumbUtil.extend({}, _jsPlumb.defaults);
+    _jsPlumb = jsPlumb.newInstance((d));
+    support = jsPlumb.createTestSupportInstanceQUnit(_jsPlumb);
+    defaults = jsPlumb.extend({}, _jsPlumb.defaults);
 }
 
 /**
@@ -73,9 +73,9 @@ var testSuite = function () {
             // debugger
             makeContainer()
 
-            _jsPlumb = jsPlumbBrowserUI.newInstance(({container:container}));
-            support = jsPlumbTestSupport.getInstanceQUnit(_jsPlumb);
-            defaults = jsPlumbUtil.extend({}, _jsPlumb.defaults);
+            _jsPlumb = jsPlumb.newInstance(({container:container}));
+            support = jsPlumb.createTestSupportInstanceQUnit(_jsPlumb);
+            defaults = jsPlumb.extend({}, _jsPlumb.defaults);
 
             var epElCount = document.querySelectorAll(".jtk-endpoint").length,
                 connElCount = document.querySelectorAll(".jtk-connector").length;
@@ -1208,6 +1208,14 @@ var testSuite = function () {
         _jsPlumb.manage(d2);
 
         _jsPlumb.addToDragGroup("DragGroup", d, d2);
+
+        var checkedElementsLength = false
+        _jsPlumb.bind("drag:stop", function(p) {
+            if (!checkedElementsLength) {
+                equal(p.elements.length, 2, "there are 2 elements in the list of elements that were dragged")
+                checkedElementsLength = true
+            }
+        })
 
         support.dragNodeBy(d, 100, 100, {
             beforeMouseUp:function() {

@@ -1,3 +1,171 @@
+## 6.1.1
+
+May 12th 2023
+
+- Updates to build
+
+## 6.1.0
+
+May 11th 2023
+
+- Bump version to keep in line with Toolkit edition. No functional change.
+
+## 6.0.5
+
+April 18th 2023
+
+- Internal packaging updates.  No functional change.
+
+## 6.0.4
+
+April 14th 2023
+
+- Fixed an issue where endpoints to set to invisible would be repainted under certain revalidation scenarios.
+
+## 6.0.3
+
+April 5th 2023
+
+- Toolkit packaging updates for evaluation builds
+
+## 6.0.2
+
+April 4th 2023
+
+- Fixed issue with Toolkit edition's Vue 3 integration packaging.
+
+## 6.0.1
+
+April 4th 2023
+
+- Added bezier / state machine connectors to Toolkit edition
+
+## 6.0.0
+
+April 4th 2023
+
+jsPlumb 6.x consists of only one package - `@jsplumb/browser-ui` - which exports everything from the various packages in 5.x. The thinking behind this decision is twofold:
+
+- it's easier to import things when you don't have to hunt around for the package the thing you want is in
+- Tree shaking is more efficient when everything is exported by a single package
+
+Since the overwhelming majority of JS/TS development involves bundlers and tree-shakers these days, it seemed a good time to update jsPlumb to sit more nicely in that world.  You can still use jsPlumb as a standalone import, via the UMD bundle, and in that case it's also easier to work with, since there's a single global export - `jsPlumb` on the window object.
+
+
+### BREAKING
+
+Aside from the fact that you'll need to update all your imports to use the single `@jsplumb/browser-ui` package, there were a few minor changes to interface names:
+
+- `newInstance` method removed from `@jsplumb/browser-ui-lists`. Use `new JsPlumbListManager(instance, params)` instead.
+
+- `BeforeStartDetachInterceptor` renamed to `BeforeStartConnectionDetachInterceptor`
+- `BeforeDetachInterceptor` renamed to `BeforeConnectionDetachInterceptor`
+- `BeforeDropInterceptor` renamed to `BeforeConnectionDropInterceptor`
+
+
+## 5.13.7
+
+March 28th 2023
+
+- Added support for injecting props into components in the Vue2/Vue3 integration packages in the Toolkit edition.
+
+## 5.13.6
+
+March 21st 2023
+
+- Update to the fix applied in 5.13.5
+
+## 5.13.5
+
+March 17th 2023
+
+- Fixed issue with endpoint cleanup after aborted connection drag
+
+## 5.13.4
+
+February 26th 2023
+
+- Packaging updates for integrations
+
+## 5.13.3
+
+February 18th 2023
+
+- Packaging updates for the Toolkit edition.
+
+## 5.13.2
+
+December 7th 2022
+
+- Updated the Toolkit's lasso plugin to remove a global reference to `document` and instead use a lazy init method
+
+## 5.13.1
+
+November 28th 2022
+
+- Updates to the Toolkit's Hierarchy layout.
+- Addition of `groupUnattachedRoots` option to Toolkit's Hierarchy layout.
+
+## 5.12.6
+
+November 9th 2022
+
+- Refactoring of the Toolkit's templates-2 package
+
+## 5.12.5
+
+November 8th 2022
+
+- Updates to handling of Angular component overlays in Toolkit edition.
+
+## 5.12.4
+
+November 7th 2022
+
+- Toolkit edition updates to support OnPush change detection
+- Updates to handling of Angular component overlays in Toolkit edition.
+
+
+## 5.12.3
+
+October 27th 2022
+
+- EventGenerator now directly invokes listener functions instead of using `apply` to bind `this`. This approach is more compatible with arrow functions in ES6.
+
+## 5.12.2
+
+October 12th 2022
+
+- updated to Arrow overlay to ensure the arrow head is drawn as a point, not a bevel.
+
+## 5.12.1
+
+October 7th 2022
+
+- updates to packaging in the Toolkit edition's background plugin
+- addition of methods to hide/show backgrounds in Toolkit edition. 
+
+## 5.12.0
+
+September 24th 2022
+
+- include drag group members in list of dragged elements that the `drag:stop` event contains
+
+## 5.11.3
+
+August 23rd 2022
+
+- Improved docs in the Toolkit edition
+
+## 5.11.2
+
+August 19th 2022
+
+- Toolkit edition updates
+- Clone initial paint style in connection class to ensure values dont leak into other connections
+- `updateFrom` method of label overlay now takes new 'location' value into account and repositions the overlay accordingly.
+- overlay locations that do not parse as a number are rejected. For new overlays this results in using the default position of 0.5; for existing overlays the location remains at its previous value.
+
 ## 5.11.1
 
 August 18th 2022
